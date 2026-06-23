@@ -706,6 +706,10 @@
                 "opcode":107
             },
             {
+                "name":"RenameCrossworldLinkshell",
+                "opcode":295
+            },
+            {
                 "name":"GMCommand",
                 "opcode":218
             },
@@ -782,6 +786,10 @@
                 "opcode":103
             },
             {
+                "name":"ZoneJump",
+                "opcode":603
+            },
+            {
                 "name":"SendLetter",
                 "opcode":769
             },
@@ -816,6 +824,18 @@
             {
                 "name":"OpenTreasure",
                 "opcode":343
+            },
+            {
+                "name":"SetFreeCompanyGreeting",
+                "opcode":805
+            },
+            {
+                "name":"EquipGearset2",
+                "opcode":334
+            },
+            {
+                "name":"RequestFreeCompanyShortMessage",
+                "opcode":901
             },
             {
                 "name":"ActionRequest",
