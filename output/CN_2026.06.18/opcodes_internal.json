@@ -1,6 +1,12 @@
 {
     "version":"2026.06.18",
     "region":"CN",
+    "consts":{
+        "BASE_INVENTORY_ACTION":110,
+        "MAIL_DELETE_RESULT":431,
+        "MAIL_SEND_RESULT":769,
+        "MAIL_TAKE_ATTACHMENTS_RESULT":912
+    },
     "lists":{
         "ServerZoneIpcType":{
             "PlayerSpawn":736,
@@ -54,6 +60,7 @@
             "SystemLogMessage144":895,
             "NpcYell":438,
             "ActorSetPos":830,
+            "LetterUpdate":432,
             "PrepareZoning":549,
             "WeatherChange":429,
             "UpdateParty":988,

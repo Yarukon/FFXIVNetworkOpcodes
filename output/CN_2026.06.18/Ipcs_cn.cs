@@ -64,6 +64,7 @@ namespace FFXIVOpcodes.CN
         SystemLogMessage144 = 0x037F,
         NpcYell = 0x01B6,
         ActorSetPos = 0x033E,
+        LetterUpdate = 0x01B0,
         PrepareZoning = 0x0225,
         WeatherChange = 0x01AD,
         UpdateParty = 0x03DC,
@@ -265,5 +266,13 @@ namespace FFXIVOpcodes.CN
     {
     
     };
+    
+    public static class Consts
+    {
+        public const int BASE_INVENTORY_ACTION = 110;
+        public const int MAIL_DELETE_RESULT = 431;
+        public const int MAIL_SEND_RESULT = 769;
+        public const int MAIL_TAKE_ATTACHMENTS_RESULT = 912;
+    }
     
 }

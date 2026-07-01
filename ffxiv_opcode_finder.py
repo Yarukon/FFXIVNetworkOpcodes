@@ -1089,17 +1089,228 @@ class ConfigReader:
             return address
 
 
+def find_inventory_action_base(clientzone):
+    """Recover BASE_INVENTORY_ACTION from the client binary.
+
+    The InventoryModifyHandler packet carries an `operation_type` field whose
+    value is BASE + a fixed offset (Discard=+6, Move=+7, Exchange=+8,
+    SplitStack=+9, CombineStack=+11, ...). Only BASE shifts every patch.
+
+    Method (validated on CN 2026.06.18 / 7.51h2 -> 110):
+      * Each InventoryModifyHandler send wrapper builds a send-descriptor with
+        the opcode immediate stored at descriptor+0 and operation_type at
+        descriptor+0x24.
+      * The cross-container move family (Move/Exchange/CombineStack) is enqueued
+        by callers that special-case container id 2006. BASE = min(move-family
+        operation_type) - 7, because Move (+7) is the lowest offset of the family.
+      * Sanity: {BASE+6,+7,+8,+9,+11} must all appear among the observed
+        operation types; otherwise a warning is printed instead of a silent guess.
+    """
+    OPTYPE_DESC_OFFSET = 0x24
+    MOVE_OFFSET = 7
+    SPECIAL_CONTAINER = 2006
+    SANITY_OFFSETS = (6, 7, 8, 9, 11)
+
+    opcode = clientzone.content.get("InventoryModifyHandler")
+    if opcode is None:
+        print("BASE_INVENTORY_ACTION: InventoryModifyHandler opcode missing, skipping")
+        return None
+
+    # Inventory send-wrapper functions (reuse the already-built send CallTable).
+    wrappers = set()
+    for entry in clientzone.table.content:
+        if entry["case"] == opcode:
+            fn = ida_funcs.get_func(entry["start"])
+            if fn:
+                wrappers.add(fn.start_ea)
+
+    # operation_type per wrapper = immediate stored at (opcode_store_disp + 0x24).
+    optypes = {}
+    for wf in wrappers:
+        fn = ida_funcs.get_func(wf)
+        stores = {}
+        ea = fn.start_ea
+        while ea < fn.end_ea and ea != idc.BADADDR:
+            if (
+                idc.print_insn_mnem(ea) == "mov"
+                and idc.get_operand_type(ea, 0) == idaapi.o_displ
+                and idc.get_operand_type(ea, 1) == idaapi.o_imm
+            ):
+                disp = idc.get_operand_value(ea, 0)
+                if disp not in stores:
+                    stores[disp] = idc.get_operand_value(ea, 1)
+            ea = idc.next_head(ea)
+        opdisp = None
+        for disp, val in stores.items():
+            if val == opcode:
+                opdisp = disp
+                break
+        if opdisp is None:
+            continue
+        ot = stores.get(opdisp + OPTYPE_DESC_OFFSET)
+        if ot is not None:
+            optypes[wf] = ot
+
+    if not optypes:
+        print("BASE_INVENTORY_ACTION: no operation types recovered, skipping")
+        return None
+
+    # Move family = wrappers whose caller special-cases the 2006 container.
+    family = []
+    for wf, ot in optypes.items():
+        found = False
+        for xref in idautils.XrefsTo(wf, 0):
+            if xref.iscode != 1:
+                continue
+            cf = ida_funcs.get_func(xref.frm)
+            if not cf:
+                continue
+            ea = cf.start_ea
+            while ea < cf.end_ea and ea != idc.BADADDR:
+                if (
+                    idc.get_operand_type(ea, 0) == idaapi.o_imm
+                    and idc.get_operand_value(ea, 0) == SPECIAL_CONTAINER
+                ) or (
+                    idc.get_operand_type(ea, 1) == idaapi.o_imm
+                    and idc.get_operand_value(ea, 1) == SPECIAL_CONTAINER
+                ):
+                    found = True
+                    break
+                ea = idc.next_head(ea)
+            if found:
+                break
+        if found:
+            family.append(ot)
+
+    observed = set(optypes.values())
+    if not family:
+        print(f"BASE_INVENTORY_ACTION: move family not found; observed={sorted(observed)}")
+        return None
+
+    base = min(family) - MOVE_OFFSET
+    missing = [off for off in SANITY_OFFSETS if (base + off) not in observed]
+    if missing:
+        print(
+            f"WARNING BASE_INVENTORY_ACTION={base} failed sanity check (missing offsets "
+            f"{missing}); observed={sorted(observed)}, move_family={sorted(set(family))}"
+        )
+    else:
+        print(
+            f"BASE_INVENTORY_ACTION = {base} (move family {sorted(set(family))}, "
+            f"{len(optypes)} inventory ops)"
+        )
+    return base
+
+
+def find_mail_result_consts(serverzone, clientzone):
+    """Recover LetterUpdate's internal result opcodes (MAIL_*_RESULT).
+
+    LetterUpdate (server->client) is dispatched by ProcessZonePacketDown to a
+    handler that switches on the first dword of the packet body via a
+    `cmp <reg>, imm ; jz` chain, where <reg> was loaded from body offset 0
+    (MSVC emits comparisons, not a jump table, for these sparse cases).
+
+    We locate the handler from LetterUpdate's opcode (its case block in the
+    ProcessZonePacketDown switch -> the call target), scan it for that offset-0
+    cmp chain, and collect the immediates. Each internal opcode equals the client
+    request opcode it answers, so we name them by matching DeleteLetter /
+    SendLetter / TakeLetterAttachments.
+    """
+    NAME_MAP = {
+        "DeleteLetter": "MAIL_DELETE_RESULT",
+        "SendLetter": "MAIL_SEND_RESULT",
+        "TakeLetterAttachments": "MAIL_TAKE_ATTACHMENTS_RESULT",
+    }
+
+    opcode = serverzone.content.get("LetterUpdate")
+    if opcode is None:
+        print("MAIL_*_RESULT: LetterUpdate opcode not found, skipping")
+        return {}
+
+    # Handler = the call target inside LetterUpdate's case block of the
+    # ProcessZonePacketDown switch (serverzone.table).
+    handler_ea = None
+    for entry in serverzone.table.content:
+        if entry["case"] != opcode:
+            continue
+        ea = entry["start"]
+        while ea < entry["end"] and ea != idc.BADADDR:
+            if idc.print_insn_mnem(ea) == "call":
+                fn = ida_funcs.get_func(idc.get_operand_value(ea, 0))
+                if fn:
+                    handler_ea = fn.start_ea
+                    break
+            ea = idc.next_head(ea)
+        if handler_ea is not None:
+            break
+    if handler_ea is None:
+        print("MAIL_*_RESULT: LetterUpdate handler not found, skipping")
+        return {}
+
+    # Scan the handler for `cmp reg, imm` where reg was loaded from body offset 0.
+    fn = ida_funcs.get_func(handler_ea)
+    off0_regs = {}
+    values = []
+    ea = fn.start_ea
+    while ea < fn.end_ea and ea != idc.BADADDR:
+        mn = idc.print_insn_mnem(ea)
+        if mn == "mov" and idc.get_operand_type(ea, 0) == idaapi.o_reg:
+            dst = idc.get_operand_value(ea, 0)
+            t1 = idc.get_operand_type(ea, 1)
+            off0_regs[dst] = (t1 == idaapi.o_phrase) or (
+                t1 == idaapi.o_displ and idc.get_operand_value(ea, 1) == 0
+            )
+        elif (
+            mn == "cmp"
+            and idc.get_operand_type(ea, 0) == idaapi.o_reg
+            and idc.get_operand_type(ea, 1) == idaapi.o_imm
+        ):
+            if off0_regs.get(idc.get_operand_value(ea, 0)):
+                v = idc.get_operand_value(ea, 1)
+                if v not in values:
+                    values.append(v)
+        ea = idc.next_head(ea)
+
+    if not values:
+        print("MAIL_*_RESULT: no dispatch immediates found in handler, skipping")
+        return {}
+
+    val_to_name = {}
+    for cname, mname in NAME_MAP.items():
+        cval = clientzone.content.get(cname)
+        if cval is not None:
+            val_to_name[cval] = mname
+
+    consts = {}
+    for v in values:
+        name = val_to_name.get(v)
+        if name:
+            consts[name] = v
+        else:
+            print(f"MAIL_*_RESULT: unmatched internal opcode {v} (0x{v:X})")
+    print(f"MAIL_*_RESULT = {consts} (handler@{handler_ea:x})")
+    return consts
+
+
 config = ConfigReader()
 print(config.content)
 serverzone = ServerZoneIpcType(config)
 print(serverzone.content)
 clientzone = ClientZoneIpcType(config)
 print(clientzone.content)
+inventory_action_base = find_inventory_action_base(clientzone)
+mail_result_consts = find_mail_result_consts(serverzone, clientzone)
 print(errors)
+
+extracted_consts = {}
+if inventory_action_base is not None:
+    extracted_consts["BASE_INVENTORY_ACTION"] = inventory_action_base
+extracted_consts.update(mail_result_consts)
 
 opcodes_internal = {
     "version": BuildID,
     "region": Region,
+    "consts": extracted_consts,
     "lists": {
         "ServerZoneIpcType": serverzone.content,
         "ClientZoneIpcType": clientzone.content,
@@ -1108,6 +1319,7 @@ opcodes_internal = {
 opcodes = {
     "version": BuildID,
     "region": Region,
+    "consts": extracted_consts,
     "lists": {
         "ServerZoneIpcType": [
             {"name": i, "opcode": serverzone.content[i]} for i in serverzone.content
@@ -1188,6 +1400,13 @@ def get_enum_textblock(name, enums, ntype, indent):
     return list(map(lambda l: " " * indent + l, res))
 
 
+def get_consts_textblock(name, consts, ntype, indent):
+    res = [f"public static class {name}", "{"]
+    res += [f"    public const {ntype} {k} = {consts[k]};" for k in consts]
+    res += ['}', '']
+    return list(map(lambda l: " " * indent + l, res))
+
+
 ipcs_line = [
     "// Generated by https://github.com/gamous/FFXIVNetworkOpcodes",
     f"namespace FFXIVOpcodes.{Region}",
@@ -1199,6 +1418,8 @@ ipcs_line += get_enum_textblock("ServerZoneIpcType", serverzone.content, 'ushort
 ipcs_line += get_enum_textblock("ClientZoneIpcType", clientzone.content, 'ushort', 4)
 ipcs_line += get_enum_textblock("ServerChatIpcType", {}, 'ushort', 4)
 ipcs_line += get_enum_textblock("ClientChatIpcType", {}, 'ushort', 4)
+if extracted_consts:
+    ipcs_line += get_consts_textblock("Consts", extracted_consts, 'int', 4)
 ipcs_line += ["}"]
 ipcs_line = list(map(lambda l: l + "\n", ipcs_line))
 with open(opcodes_csharp_path, "w+") as f:

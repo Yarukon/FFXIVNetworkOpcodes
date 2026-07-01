@@ -1,6 +1,12 @@
 {
     "version":"2026.06.18",
     "region":"CN",
+    "consts":{
+        "BASE_INVENTORY_ACTION":110,
+        "MAIL_DELETE_RESULT":431,
+        "MAIL_SEND_RESULT":769,
+        "MAIL_TAKE_ATTACHMENTS_RESULT":912
+    },
     "lists":{
         "ServerZoneIpcType":[
             {
@@ -206,6 +212,10 @@
             {
                 "name":"ActorSetPos",
                 "opcode":830
+            },
+            {
+                "name":"LetterUpdate",
+                "opcode":432
             },
             {
                 "name":"PrepareZoning",
