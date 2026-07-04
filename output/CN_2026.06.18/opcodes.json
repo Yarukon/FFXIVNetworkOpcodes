@@ -900,6 +900,10 @@
                 "opcode":354
             },
             {
+                "name":"SaveGlamourPlate",
+                "opcode":823
+            },
+            {
                 "name":"EventAction1",
                 "opcode":638
             },
