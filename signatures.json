@@ -348,7 +348,8 @@
     "RSF": "48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 41 ? 48 ? ? ? 48 ? ? ? ? ? ? 45 ? ? 49",
     "WorldVisitQueue": "C7 01 ? ? ? ? C6 41 04 ? C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC 40 53",
     "GlamourDresserContents": "40 53 48 83 EC ? 0F B6 02 4C 8D 92",
-    "GlamourPlates": "40 53 48 83 EC ? 48 8B D9 41 B8 ? ? ? ? 48 81 C1"
+    "GlamourPlates": "40 53 48 83 EC ? 48 8B D9 41 B8 ? ? ? ? 48 81 C1",
+    "AdventurerPlateInfo": "40 53 48 83 EC ? 8B 05 ? ? ? ? 48 8B DA"
   },
   "ClientZoneIpcType": {
     "__init__": {

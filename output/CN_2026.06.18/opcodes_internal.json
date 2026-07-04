@@ -139,7 +139,8 @@
             "RSF":425,
             "WorldVisitQueue":809,
             "GlamourDresserContents":559,
-            "GlamourPlates":702
+            "GlamourPlates":702,
+            "AdventurerPlateInfo":482
         },
         "ClientZoneIpcType":{
             "StandardControlsPivot":473,

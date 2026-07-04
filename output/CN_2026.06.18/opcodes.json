@@ -532,6 +532,10 @@
             {
                 "name":"GlamourPlates",
                 "opcode":702
+            },
+            {
+                "name":"AdventurerPlateInfo",
+                "opcode":482
             }
         ],
         "ClientZoneIpcType":[
