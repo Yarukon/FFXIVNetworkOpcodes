@@ -142,6 +142,8 @@ namespace FFXIVOpcodes.CN
         RSV = 0x02A0,
         RSF = 0x01A9,
         WorldVisitQueue = 0x0329,
+        GlamourDresserContents = 0x022F,
+        GlamourPlates = 0x02BE,
     };
     
     public enum ClientZoneIpcType : ushort
@@ -239,7 +241,7 @@ namespace FFXIVOpcodes.CN
         Heartbeat = 0x0383,
         WorldTravel = 0x016D,
         ClientCountdownInitiate = 0x0162,
-        SaveGlamourPlate = 0x0337,
+        GlamourPlateSave = 0x0337,
         EventAction1 = 0x027E,
         EventAction4 = 0x01A4,
         EventAction8 = 0x02A2,

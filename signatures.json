@@ -346,7 +346,9 @@
     "IslandWorkshopSupplyDemand": "48 89 5c 24 ? 48 89 6c 24 ? 48 89 74 24 ? 57 48 ? ? ? 80 b9 ? ? ? ? ? 48 ? ? 74 ? 0f",
     "RSV": "E9 ?? ?? ?? ?? CC CC CC CC CC CC CC CC CC 48 8B 11",
     "RSF": "48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 41 ? 48 ? ? ? 48 ? ? ? ? ? ? 45 ? ? 49",
-    "WorldVisitQueue": "C7 01 ? ? ? ? C6 41 04 ? C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC 40 53"
+    "WorldVisitQueue": "C7 01 ? ? ? ? C6 41 04 ? C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC 40 53",
+    "GlamourDresserContents": "40 53 48 83 EC ? 0F B6 02 4C 8D 92",
+    "GlamourPlates": "40 53 48 83 EC ? 48 8B D9 41 B8 ? ? ? ? 48 81 C1"
   },
   "ClientZoneIpcType": {
     "__init__": {
@@ -465,7 +467,7 @@
     },
     "WorldTravel": "C7 45 ?? ?? ?? ?? ?? 48 8B C8 48 C7 45",
     "ClientCountdownInitiate": "C7 44 24 ? ? ? ? ? 48 ? ? 48 C7 44 24 ? ? ? ? ? 0F 11 44 24 ? 66 89 74 24",
-    "SaveGlamourPlate": "C7 44 24 ? ? ? ? ? 0F 10 48 ? 48 C7 44 24",
+    "GlamourPlateSave": "C7 44 24 ? ? ? ? ? 0F 10 48 ? 48 C7 44 24",
     "EventAction1": {
       "Function": "EventAction",
       "Param": 1

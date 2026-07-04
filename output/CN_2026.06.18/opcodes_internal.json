@@ -137,7 +137,9 @@
             "IslandWorkshopSupplyDemand":661,
             "RSV":672,
             "RSF":425,
-            "WorldVisitQueue":809
+            "WorldVisitQueue":809,
+            "GlamourDresserContents":559,
+            "GlamourPlates":702
         },
         "ClientZoneIpcType":{
             "StandardControlsPivot":473,
@@ -233,7 +235,7 @@
             "Heartbeat":899,
             "WorldTravel":365,
             "ClientCountdownInitiate":354,
-            "SaveGlamourPlate":823,
+            "GlamourPlateSave":823,
             "EventAction1":638,
             "EventAction4":420,
             "EventAction8":674,

@@ -524,6 +524,14 @@
             {
                 "name":"WorldVisitQueue",
                 "opcode":809
+            },
+            {
+                "name":"GlamourDresserContents",
+                "opcode":559
+            },
+            {
+                "name":"GlamourPlates",
+                "opcode":702
             }
         ],
         "ClientZoneIpcType":[
@@ -900,7 +908,7 @@
                 "opcode":354
             },
             {
-                "name":"SaveGlamourPlate",
+                "name":"GlamourPlateSave",
                 "opcode":823
             },
             {
