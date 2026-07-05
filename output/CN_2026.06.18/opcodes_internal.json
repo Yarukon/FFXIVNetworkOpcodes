@@ -140,7 +140,8 @@
             "WorldVisitQueue":809,
             "GlamourDresserContents":559,
             "GlamourPlates":702,
-            "AdventurerPlateInfo":482
+            "AdventurerPlateInfo":482,
+            "RequestCharaCardError":610
         },
         "ClientZoneIpcType":{
             "StandardControlsPivot":473,

@@ -145,6 +145,7 @@ namespace FFXIVOpcodes.CN
         GlamourDresserContents = 0x022F,
         GlamourPlates = 0x02BE,
         AdventurerPlateInfo = 0x01E2,
+        RequestCharaCardError = 0x0262,
     };
     
     public enum ClientZoneIpcType : ushort

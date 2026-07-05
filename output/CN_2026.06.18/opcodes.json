@@ -536,6 +536,10 @@
             {
                 "name":"AdventurerPlateInfo",
                 "opcode":482
+            },
+            {
+                "name":"RequestCharaCardError",
+                "opcode":610
             }
         ],
         "ClientZoneIpcType":[
