@@ -542,8 +542,16 @@
                 "opcode":610
             },
             {
-                "name":"PartyMemberPortraits",
+                "name":"PartyMemberPortrait1",
                 "opcode":634
+            },
+            {
+                "name":"PartyMemberPortrait4",
+                "opcode":814
+            },
+            {
+                "name":"PartyMemberPortrait8",
+                "opcode":623
             }
         ],
         "ClientZoneIpcType":[

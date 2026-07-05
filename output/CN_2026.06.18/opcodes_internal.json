@@ -142,7 +142,9 @@
             "GlamourPlates":702,
             "AdventurerPlateInfo":482,
             "RequestAdventurerPlateError":610,
-            "PartyMemberPortraits":634
+            "PartyMemberPortrait1":634,
+            "PartyMemberPortrait4":814,
+            "PartyMemberPortrait8":623
         },
         "ClientZoneIpcType":{
             "StandardControlsPivot":473,

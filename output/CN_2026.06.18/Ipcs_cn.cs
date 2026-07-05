@@ -146,7 +146,9 @@ namespace FFXIVOpcodes.CN
         GlamourPlates = 0x02BE,
         AdventurerPlateInfo = 0x01E2,
         RequestAdventurerPlateError = 0x0262,
-        PartyMemberPortraits = 0x027A,
+        PartyMemberPortrait1 = 0x027A,
+        PartyMemberPortrait4 = 0x032E,
+        PartyMemberPortrait8 = 0x026F,
     };
     
     public enum ClientZoneIpcType : ushort
