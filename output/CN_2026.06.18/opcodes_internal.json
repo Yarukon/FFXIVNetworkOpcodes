@@ -143,8 +143,8 @@
             "AdventurerPlateInfo":482,
             "RequestAdventurerPlateError":610,
             "PartyMemberPortrait1":634,
-            "PartyMemberPortrait4":814,
-            "PartyMemberPortrait8":623
+            "PartyMemberPortraits4":814,
+            "PartyMemberPortraits8":623
         },
         "ClientZoneIpcType":{
             "StandardControlsPivot":473,

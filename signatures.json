@@ -352,8 +352,8 @@
     "AdventurerPlateInfo": "40 53 48 83 EC ? 8B 05 ? ? ? ? 48 8B DA",
     "RequestAdventurerPlateError": "40 53 48 83 EC ? 80 7A ? ? 48 8B DA 75",
     "PartyMemberPortrait1": "48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? 48 8B FA 4C 8D 4A",
-    "PartyMemberPortrait4": "E9 ? ? ? ? 48 83 C4 ? 5B C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC 40 53 48 83 EC ? 48 8B D9 E8 ? ? ? ? 48 8B C8 E8 ? ? ? ? 48 85 C0 74 ? 48 8B D3 48 8B C8 48 83 C4 ? 5B E9 ? ? ? ? 48 83 C4 ? 5B C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC 40 53 48 83 EC ? 48 8B D9 E8 ? ? ? ? 84 C0 74 ? E8 ? ? ? ? 48 8B D3 48 8B C8 48 83 C4 ? 5B E9 ? ? ? ? 48 83 C4 ? 5B C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC 48 89 5C 24",
-    "PartyMemberPortrait8": "E9 ? ? ? ? 48 83 C4 ? 5B C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC 40 53 48 83 EC ? 48 8B D9 E8 ? ? ? ? 84 C0 74 ? E8 ? ? ? ? 48 8B D3 48 8B C8 48 83 C4 ? 5B E9 ? ? ? ? 48 83 C4 ? 5B C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC 48 89 5C 24"
+    "PartyMemberPortraits4": "E9 ? ? ? ? 48 83 C4 ? 5B C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC 40 53 48 83 EC ? 48 8B D9 E8 ? ? ? ? 48 8B C8 E8 ? ? ? ? 48 85 C0 74 ? 48 8B D3 48 8B C8 48 83 C4 ? 5B E9 ? ? ? ? 48 83 C4 ? 5B C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC 40 53 48 83 EC ? 48 8B D9 E8 ? ? ? ? 84 C0 74 ? E8 ? ? ? ? 48 8B D3 48 8B C8 48 83 C4 ? 5B E9 ? ? ? ? 48 83 C4 ? 5B C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC 48 89 5C 24",
+    "PartyMemberPortraits8": "E9 ? ? ? ? 48 83 C4 ? 5B C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC 40 53 48 83 EC ? 48 8B D9 E8 ? ? ? ? 84 C0 74 ? E8 ? ? ? ? 48 8B D3 48 8B C8 48 83 C4 ? 5B E9 ? ? ? ? 48 83 C4 ? 5B C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC 48 89 5C 24"
   },
   "ClientZoneIpcType": {
     "__init__": {
