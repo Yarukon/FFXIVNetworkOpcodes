@@ -146,6 +146,7 @@ namespace FFXIVOpcodes.CN
         GlamourPlates = 0x02BE,
         AdventurerPlateInfo = 0x01E2,
         RequestAdventurerPlateError = 0x0262,
+        PartyMemberPortraits = 0x027A,
     };
     
     public enum ClientZoneIpcType : ushort
@@ -245,6 +246,7 @@ namespace FFXIVOpcodes.CN
         ClientCountdownInitiate = 0x0162,
         GlamourPlateSave = 0x0337,
         SubmitAdventurerPlate = 0x01E7,
+        SubmitPortraitData = 0x039C,
         EventAction1 = 0x027E,
         EventAction4 = 0x01A4,
         EventAction8 = 0x02A2,

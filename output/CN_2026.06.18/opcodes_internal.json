@@ -141,7 +141,8 @@
             "GlamourDresserContents":559,
             "GlamourPlates":702,
             "AdventurerPlateInfo":482,
-            "RequestAdventurerPlateError":610
+            "RequestAdventurerPlateError":610,
+            "PartyMemberPortraits":634
         },
         "ClientZoneIpcType":{
             "StandardControlsPivot":473,
@@ -239,6 +240,7 @@
             "ClientCountdownInitiate":354,
             "GlamourPlateSave":823,
             "SubmitAdventurerPlate":487,
+            "SubmitPortraitData":924,
             "EventAction1":638,
             "EventAction4":420,
             "EventAction8":674,

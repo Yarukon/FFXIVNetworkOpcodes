@@ -350,7 +350,8 @@
     "GlamourDresserContents": "40 53 48 83 EC ? 0F B6 02 4C 8D 92",
     "GlamourPlates": "40 53 48 83 EC ? 48 8B D9 41 B8 ? ? ? ? 48 81 C1",
     "AdventurerPlateInfo": "40 53 48 83 EC ? 8B 05 ? ? ? ? 48 8B DA",
-    "RequestAdventurerPlateError": "40 53 48 83 EC ? 80 7A ? ? 48 8B DA 75"
+    "RequestAdventurerPlateError": "40 53 48 83 EC ? 80 7A ? ? 48 8B DA 75",
+    "PartyMemberPortraits": "48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? 48 8B FA 4C 8D 4A"
   },
   "ClientZoneIpcType": {
     "__init__": {
@@ -471,6 +472,7 @@
     "ClientCountdownInitiate": "C7 44 24 ? ? ? ? ? 48 ? ? 48 C7 44 24 ? ? ? ? ? 0F 11 44 24 ? 66 89 74 24",
     "GlamourPlateSave": "C7 44 24 ? ? ? ? ? 0F 10 48 ? 48 C7 44 24",
     "SubmitAdventurerPlate": "C7 84 24 ? ? ? ? ? ? ? ? 0F 10 00",
+    "SubmitPortraitData": "C7 44 24 ? ? ? ? ? 48 C7 44 24 ? ? ? ? ? 0F 11 01",
     "EventAction1": {
       "Function": "EventAction",
       "Param": 1

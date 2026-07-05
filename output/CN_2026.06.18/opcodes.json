@@ -540,6 +540,10 @@
             {
                 "name":"RequestAdventurerPlateError",
                 "opcode":610
+            },
+            {
+                "name":"PartyMemberPortraits",
+                "opcode":634
             }
         ],
         "ClientZoneIpcType":[
@@ -922,6 +926,10 @@
             {
                 "name":"SubmitAdventurerPlate",
                 "opcode":487
+            },
+            {
+                "name":"SubmitPortraitData",
+                "opcode":924
             },
             {
                 "name":"EventAction1",
