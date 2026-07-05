@@ -243,6 +243,7 @@ namespace FFXIVOpcodes.CN
         WorldTravel = 0x016D,
         ClientCountdownInitiate = 0x0162,
         GlamourPlateSave = 0x0337,
+        AdventurerPlateSave = 0x01E7,
         EventAction1 = 0x027E,
         EventAction4 = 0x01A4,
         EventAction8 = 0x02A2,
