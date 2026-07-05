@@ -141,7 +141,7 @@
             "GlamourDresserContents":559,
             "GlamourPlates":702,
             "AdventurerPlateInfo":482,
-            "RequestCharaCardError":610
+            "RequestAdventurerPlateError":610
         },
         "ClientZoneIpcType":{
             "StandardControlsPivot":473,

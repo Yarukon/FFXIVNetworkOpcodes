@@ -350,7 +350,7 @@
     "GlamourDresserContents": "40 53 48 83 EC ? 0F B6 02 4C 8D 92",
     "GlamourPlates": "40 53 48 83 EC ? 48 8B D9 41 B8 ? ? ? ? 48 81 C1",
     "AdventurerPlateInfo": "40 53 48 83 EC ? 8B 05 ? ? ? ? 48 8B DA",
-    "RequestCharaCardError": "40 53 48 83 EC ? 80 7A ? ? 48 8B DA 75"
+    "RequestAdventurerPlateError": "40 53 48 83 EC ? 80 7A ? ? 48 8B DA 75"
   },
   "ClientZoneIpcType": {
     "__init__": {
