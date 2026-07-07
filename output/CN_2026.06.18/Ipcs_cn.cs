@@ -150,6 +150,8 @@ namespace FFXIVOpcodes.CN
         PartyMemberPortraits4 = 0x032E,
         PartyMemberPortraits8 = 0x026F,
         BardPerformanceBuffer = 0x0364,
+        ExamineCharacterComments = 0x0130,
+        ExamineCharacterFCInfo = 0x025B,
     };
     
     public enum ClientZoneIpcType : ushort
@@ -251,6 +253,8 @@ namespace FFXIVOpcodes.CN
         SubmitAdventurerPlate = 0x01E7,
         SubmitPortraitData = 0x039C,
         SendBardPerformanceBuffer = 0x01C9,
+        ExamineRequestComments = 0x00B6,
+        ExamineRequestFCInfo = 0x015F,
         EventAction1 = 0x027E,
         EventAction4 = 0x01A4,
         EventAction8 = 0x02A2,

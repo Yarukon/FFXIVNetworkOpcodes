@@ -556,6 +556,14 @@
             {
                 "name":"BardPerformanceBuffer",
                 "opcode":868
+            },
+            {
+                "name":"ExamineCharacterComments",
+                "opcode":304
+            },
+            {
+                "name":"ExamineCharacterFCInfo",
+                "opcode":603
             }
         ],
         "ClientZoneIpcType":[
@@ -946,6 +954,14 @@
             {
                 "name":"SendBardPerformanceBuffer",
                 "opcode":457
+            },
+            {
+                "name":"ExamineRequestComments",
+                "opcode":182
+            },
+            {
+                "name":"ExamineRequestFCInfo",
+                "opcode":351
             },
             {
                 "name":"EventAction1",
