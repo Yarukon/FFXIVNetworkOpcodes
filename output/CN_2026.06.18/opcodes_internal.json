@@ -144,7 +144,8 @@
             "RequestAdventurerPlateError":610,
             "PartyMemberPortrait1":634,
             "PartyMemberPortraits4":814,
-            "PartyMemberPortraits8":623
+            "PartyMemberPortraits8":623,
+            "BardPerformanceBuffer":868
         },
         "ClientZoneIpcType":{
             "StandardControlsPivot":473,
@@ -243,6 +244,7 @@
             "GlamourPlateSave":823,
             "SubmitAdventurerPlate":487,
             "SubmitPortraitData":924,
+            "SendBardPerformanceBuffer":457,
             "EventAction1":638,
             "EventAction4":420,
             "EventAction8":674,

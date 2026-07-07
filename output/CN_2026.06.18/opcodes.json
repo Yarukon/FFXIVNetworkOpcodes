@@ -552,6 +552,10 @@
             {
                 "name":"PartyMemberPortraits8",
                 "opcode":623
+            },
+            {
+                "name":"BardPerformanceBuffer",
+                "opcode":868
             }
         ],
         "ClientZoneIpcType":[
@@ -938,6 +942,10 @@
             {
                 "name":"SubmitPortraitData",
                 "opcode":924
+            },
+            {
+                "name":"SendBardPerformanceBuffer",
+                "opcode":457
             },
             {
                 "name":"EventAction1",

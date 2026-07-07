@@ -149,6 +149,7 @@ namespace FFXIVOpcodes.CN
         PartyMemberPortrait1 = 0x027A,
         PartyMemberPortraits4 = 0x032E,
         PartyMemberPortraits8 = 0x026F,
+        BardPerformanceBuffer = 0x0364,
     };
     
     public enum ClientZoneIpcType : ushort
@@ -249,6 +250,7 @@ namespace FFXIVOpcodes.CN
         GlamourPlateSave = 0x0337,
         SubmitAdventurerPlate = 0x01E7,
         SubmitPortraitData = 0x039C,
+        SendBardPerformanceBuffer = 0x01C9,
         EventAction1 = 0x027E,
         EventAction4 = 0x01A4,
         EventAction8 = 0x02A2,
