@@ -562,7 +562,7 @@
                 "opcode":304
             },
             {
-                "name":"ExamineCharacterFCInfo",
+                "name":"FCShortInfo",
                 "opcode":603
             }
         ],
@@ -960,7 +960,7 @@
                 "opcode":182
             },
             {
-                "name":"ExamineRequestFCInfo",
+                "name":"RequestFCShortInfo",
                 "opcode":351
             },
             {
