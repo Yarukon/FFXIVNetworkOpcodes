@@ -562,7 +562,7 @@
                 "opcode":304
             },
             {
-                "name":"FCShortInfo",
+                "name":"FCProfile",
                 "opcode":603
             }
         ],
@@ -960,7 +960,7 @@
                 "opcode":182
             },
             {
-                "name":"RequestFCShortInfo",
+                "name":"RequestFCProfile",
                 "opcode":351
             },
             {

@@ -356,7 +356,7 @@
     "PartyMemberPortraits8": "E9 ? ? ? ? 48 83 C4 ? 5B C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC 40 53 48 83 EC ? 48 8B D9 E8 ? ? ? ? 84 C0 74 ? E8 ? ? ? ? 48 8B D3 48 8B C8 48 83 C4 ? 5B E9 ? ? ? ? 48 83 C4 ? 5B C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC 48 89 5C 24",
     "BardPerformanceBuffer": "48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? 48 8B DA 8B F9 8B D1 48 8D 0D ? ? ? ? E8 ? ? ? ? 4C 8B CB",
     "ExamineCharacterComments": "48 89 5C 24 ? 48 89 6C 24 ? 56 48 83 EC ? 49 8B E8 8B DA",
-    "FCShortInfo": "48 89 5C 24 ? 57 48 83 EC ? 48 8B 01 48 8B FA 48 8B D9 FF 50 ? 84 C0 0F 84 ? ? ? ? 83 7B"
+    "FCProfile": "48 89 5C 24 ? 57 48 83 EC ? 48 8B 01 48 8B FA 48 8B D9 FF 50 ? 84 C0 0F 84 ? ? ? ? 83 7B"
   },
   "ClientZoneIpcType": {
     "__init__": {
@@ -480,7 +480,7 @@
     "SubmitPortraitData": "C7 44 24 ? ? ? ? ? 48 C7 44 24 ? ? ? ? ? 0F 11 01",
     "SendBardPerformanceBuffer": "C7 44 24 ? ? ? ? ? 48 C7 44 24 ? ? ? ? ? 40 88 74 24 ? F2 0F 11 44 24",
     "ExamineRequestComments": "C7 44 24 ? ? ? ? ? 45 33 C0 48 C7 44 24 ? ? ? ? ? 48 8D 54 24 ? 89 5C 24 ? 48 8B C8 E8 ? ? ? ? B0 ? 48 8B 8C 24 ? ? ? ? 48 33 CC E8 ? ? ? ? 48 81 C4 ? ? ? ? 5B C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC 48 89 5C 24 ? 57",
-    "RequestFCShortInfo": "C7 44 24 ? ? ? ? ? 45 33 C0 48 C7 44 24 ? ? ? ? ? 48 8D 54 24 ? 48 C7 44 24 ? ? ? ? ? 48 8B C8 89 5C 24",
+    "RequestFCProfile": "C7 44 24 ? ? ? ? ? 45 33 C0 48 C7 44 24 ? ? ? ? ? 48 8D 54 24 ? 48 C7 44 24 ? ? ? ? ? 48 8B C8 89 5C 24",
     "EventAction1": {
       "Function": "EventAction",
       "Param": 1

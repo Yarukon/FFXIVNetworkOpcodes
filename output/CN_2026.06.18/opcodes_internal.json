@@ -147,7 +147,7 @@
             "PartyMemberPortraits8":623,
             "BardPerformanceBuffer":868,
             "ExamineCharacterComments":304,
-            "FCShortInfo":603
+            "FCProfile":603
         },
         "ClientZoneIpcType":{
             "StandardControlsPivot":473,
@@ -248,7 +248,7 @@
             "SubmitPortraitData":924,
             "SendBardPerformanceBuffer":457,
             "ExamineRequestComments":182,
-            "RequestFCShortInfo":351,
+            "RequestFCProfile":351,
             "EventAction1":638,
             "EventAction4":420,
             "EventAction8":674,
