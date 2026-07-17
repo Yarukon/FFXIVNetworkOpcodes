@@ -564,6 +564,18 @@
             {
                 "name":"FCProfile",
                 "opcode":603
+            },
+            {
+                "name":"ContentFinderUpdate",
+                "opcode":885
+            },
+            {
+                "name":"QueueInfoState",
+                "opcode":453
+            },
+            {
+                "name":"ContentFinderCommencing",
+                "opcode":269
             }
         ],
         "ClientZoneIpcType":[

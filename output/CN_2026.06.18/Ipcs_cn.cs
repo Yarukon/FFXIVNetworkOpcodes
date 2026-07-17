@@ -152,6 +152,9 @@ namespace FFXIVOpcodes.CN
         BardPerformanceBuffer = 0x0364,
         ExamineCharacterComments = 0x0130,
         FCProfile = 0x025B,
+        ContentFinderUpdate = 0x0375,
+        QueueInfoState = 0x01C5,
+        ContentFinderCommencing = 0x010D,
     };
     
     public enum ClientZoneIpcType : ushort

@@ -147,7 +147,10 @@
             "PartyMemberPortraits8":623,
             "BardPerformanceBuffer":868,
             "ExamineCharacterComments":304,
-            "FCProfile":603
+            "FCProfile":603,
+            "ContentFinderUpdate":885,
+            "QueueInfoState":453,
+            "ContentFinderCommencing":269
         },
         "ClientZoneIpcType":{
             "StandardControlsPivot":473,
