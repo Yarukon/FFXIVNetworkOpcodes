@@ -576,6 +576,10 @@
             {
                 "name":"ContentFinderCommencing",
                 "opcode":269
+            },
+            {
+                "name":"RecordGatheringLog",
+                "opcode":878
             }
         ],
         "ClientZoneIpcType":[

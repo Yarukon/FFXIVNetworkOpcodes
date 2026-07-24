@@ -150,7 +150,8 @@
             "FCProfile":603,
             "ContentFinderUpdate":885,
             "QueueInfoState":453,
-            "ContentFinderCommencing":269
+            "ContentFinderCommencing":269,
+            "RecordGatheringLog":878
         },
         "ClientZoneIpcType":{
             "StandardControlsPivot":473,

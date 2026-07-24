@@ -155,6 +155,7 @@ namespace FFXIVOpcodes.CN
         ContentFinderUpdate = 0x0375,
         QueueInfoState = 0x01C5,
         ContentFinderCommencing = 0x010D,
+        RecordGatheringLog = 0x036E,
     };
     
     public enum ClientZoneIpcType : ushort

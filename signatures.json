@@ -359,7 +359,8 @@
     "FCProfile": "48 89 5C 24 ? 57 48 83 EC ? 48 8B 01 48 8B FA 48 8B D9 FF 50 ? 84 C0 0F 84 ? ? ? ? 83 7B",
     "ContentFinderUpdate": "48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 44 24 ? 48 8B D9 48 8D 0D",
     "QueueInfoState": "40 53 48 83 EC ? 48 8B D9 48 8D 0D ? ? ? ? E8 ? ? ? ? 48 85 C0 74 ? 80 7B",
-    "ContentFinderCommencing": "40 53 48 83 EC ? 48 8B D9 48 8D 0D ? ? ? ? E8 ? ? ? ? 48 85 C0 74 ? 0F B6 13 4C 8D 43"
+    "ContentFinderCommencing": "40 53 48 83 EC ? 48 8B D9 48 8D 0D ? ? ? ? E8 ? ? ? ? 48 85 C0 74 ? 0F B6 13 4C 8D 43",
+    "RecordGatheringLog": "0F B6 11 4C 8D 05 ? ? ? ? 0F B6 41 ? 42 88 04 02 C3 CC CC CC CC CC CC CC CC CC CC CC CC CC 0F 10 01 0F 11 05 ? ? ? ? 0F 10 49 ? 0F 11 0D ? ? ? ? 0F 10 41"
   },
   "ClientZoneIpcType": {
     "__init__": {
