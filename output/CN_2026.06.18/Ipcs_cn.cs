@@ -259,6 +259,7 @@ namespace FFXIVOpcodes.CN
         SendBardPerformanceBuffer = 0x01C9,
         ExamineRequestComments = 0x00B6,
         RequestFCProfile = 0x015F,
+        MeldMateriaRequest = 0x032C,
         EventAction1 = 0x027E,
         EventAction4 = 0x01A4,
         EventAction8 = 0x02A2,

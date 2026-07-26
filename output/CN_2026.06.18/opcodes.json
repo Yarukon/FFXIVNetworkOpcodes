@@ -980,6 +980,10 @@
                 "opcode":351
             },
             {
+                "name":"MeldMateriaRequest",
+                "opcode":812
+            },
+            {
                 "name":"EventAction1",
                 "opcode":638
             },
