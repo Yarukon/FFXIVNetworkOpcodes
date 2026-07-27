@@ -151,7 +151,8 @@
             "ContentFinderUpdate":885,
             "QueueInfoState":453,
             "ContentFinderCommencing":269,
-            "RecordGatheringLog":878
+            "RecordGatheringLog":878,
+            "RecruitingPartyCount":441
         },
         "ClientZoneIpcType":{
             "StandardControlsPivot":473,
@@ -254,6 +255,7 @@
             "ExamineRequestComments":182,
             "RequestFCProfile":351,
             "MeldMateriaRequest":812,
+            "RequestRecruitingPartyCount":545,
             "EventAction1":638,
             "EventAction4":420,
             "EventAction8":674,

@@ -156,6 +156,7 @@ namespace FFXIVOpcodes.CN
         QueueInfoState = 0x01C5,
         ContentFinderCommencing = 0x010D,
         RecordGatheringLog = 0x036E,
+        RecruitingPartyCount = 0x01B9,
     };
     
     public enum ClientZoneIpcType : ushort
@@ -260,6 +261,7 @@ namespace FFXIVOpcodes.CN
         ExamineRequestComments = 0x00B6,
         RequestFCProfile = 0x015F,
         MeldMateriaRequest = 0x032C,
+        RequestRecruitingPartyCount = 0x0221,
         EventAction1 = 0x027E,
         EventAction4 = 0x01A4,
         EventAction8 = 0x02A2,

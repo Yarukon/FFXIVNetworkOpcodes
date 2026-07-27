@@ -580,6 +580,10 @@
             {
                 "name":"RecordGatheringLog",
                 "opcode":878
+            },
+            {
+                "name":"RecruitingPartyCount",
+                "opcode":441
             }
         ],
         "ClientZoneIpcType":[
@@ -982,6 +986,10 @@
             {
                 "name":"MeldMateriaRequest",
                 "opcode":812
+            },
+            {
+                "name":"RequestRecruitingPartyCount",
+                "opcode":545
             },
             {
                 "name":"EventAction1",
