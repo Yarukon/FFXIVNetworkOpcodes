@@ -2,7 +2,10 @@
     "version":"2026.07.16",
     "region":"CN",
     "consts":{
-        "BASE_INVENTORY_ACTION":211
+        "BASE_INVENTORY_ACTION":211,
+        "MAIL_DELETE_RESULT":318,
+        "MAIL_SEND_RESULT":321,
+        "MAIL_TAKE_ATTACHMENTS_RESULT":825
     },
     "lists":{
         "ServerZoneIpcType":[

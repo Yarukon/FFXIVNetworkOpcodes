@@ -1202,13 +1202,37 @@ def find_inventory_action_base(clientzone):
     return base
 
 
+_DISPATCH_JUMPS = ("jz", "je", "jnz", "jne")
+
+
+def _is_dispatch_compare(ea):
+    """True if this instruction's flags are consumed by an adjacent conditional branch.
+
+    `sub` doubles as ordinary arithmetic, so it only counts as a switch case test when
+    the very next instruction branches on the result. Without this guard a stray
+    `sub reg, imm` in the handler body reads as a case value.
+    """
+    nxt = idc.next_head(ea)
+    if nxt == idc.BADADDR:
+        return False
+    return idc.print_insn_mnem(nxt).lower() in _DISPATCH_JUMPS
+
+
+def _signed32(v):
+    """IDA reports immediates unsigned; a negative delta arrives as a huge value."""
+    v &= 0xFFFFFFFF
+    return v - 0x100000000 if v > 0x7FFFFFFF else v
+
+
 def find_mail_result_consts(serverzone, clientzone):
     """Recover LetterUpdate's internal result opcodes (MAIL_*_RESULT).
 
     LetterUpdate (server->client) is dispatched by ProcessZonePacketDown to a
-    handler that switches on the first dword of the packet body via a
-    `cmp <reg>, imm ; jz` chain, where <reg> was loaded from body offset 0
-    (MSVC emits comparisons, not a jump table, for these sparse cases).
+    handler that switches on the first dword of the packet body. MSVC emits
+    comparisons rather than a jump table for these sparse cases, but as a
+    *running subtract* chain -- each test consumes the previous remainder, so an
+    immediate is a delta from the previous case, not an absolute opcode. See the
+    scan loop below for the exact shape.
 
     We locate the handler from LetterUpdate's opcode (its case block in the
     ProcessZonePacketDown switch -> the call target), scan it for that offset-0
@@ -1247,28 +1271,58 @@ def find_mail_result_consts(serverzone, clientzone):
         print("MAIL_*_RESULT: LetterUpdate handler not found, skipping")
         return {}
 
-    # Scan the handler for `cmp reg, imm` where reg was loaded from body offset 0.
+    # Scan the handler for the dispatch chain on body offset 0.
+    #
+    # MSVC compiles these sparse cases as a *running subtract* chain, not independent
+    # compares -- each test consumes the previous one's remainder:
+    #
+    #     mov ecx, [r15]     ; body offset 0
+    #     sub ecx, 13Eh      ; jz -> case 318
+    #     sub ecx, 3         ; jz -> case 321   (318 + 3)
+    #     cmp ecx, 1F8h      ; jnz -> case 825  (321 + 504)
+    #
+    # So an immediate is a *delta from the previous case*, not an opcode. Reading them
+    # literally yields one bogus value (504) and misses all three real ones. Track a
+    # per-register accumulator and only trust a test whose flags feed a conditional jump.
     fn = ida_funcs.get_func(handler_ea)
-    off0_regs = {}
+    off0_regs = {}  # reg -> running accumulator, for regs traced to body offset 0
     values = []
     ea = fn.start_ea
     while ea < fn.end_ea and ea != idc.BADADDR:
-        mn = idc.print_insn_mnem(ea)
-        if mn == "mov" and idc.get_operand_type(ea, 0) == idaapi.o_reg:
-            dst = idc.get_operand_value(ea, 0)
+        mn = idc.print_insn_mnem(ea).lower()
+        t0 = idc.get_operand_type(ea, 0)
+        reg = idc.get_operand_value(ea, 0) if t0 == idaapi.o_reg else None
+        imm = (
+            _signed32(idc.get_operand_value(ea, 1))
+            if idc.get_operand_type(ea, 1) == idaapi.o_imm
+            else None
+        )
+
+        if mn == "mov" and reg is not None:
             t1 = idc.get_operand_type(ea, 1)
-            off0_regs[dst] = (t1 == idaapi.o_phrase) or (
+            loaded_from_off0 = (t1 == idaapi.o_phrase) or (
                 t1 == idaapi.o_displ and idc.get_operand_value(ea, 1) == 0
             )
-        elif (
-            mn == "cmp"
-            and idc.get_operand_type(ea, 0) == idaapi.o_reg
-            and idc.get_operand_type(ea, 1) == idaapi.o_imm
-        ):
-            if off0_regs.get(idc.get_operand_value(ea, 0)):
-                v = idc.get_operand_value(ea, 1)
-                if v not in values:
-                    values.append(v)
+            if loaded_from_off0:
+                off0_regs[reg] = 0
+            else:
+                off0_regs.pop(reg, None)
+        elif mn in ("sub", "add") and reg in off0_regs and imm is not None:
+            delta = imm if mn == "sub" else -imm
+            value = off0_regs[reg] + delta
+            if _is_dispatch_compare(ea) and value not in values:
+                values.append(value)
+            # The register keeps the remainder either way, so the accumulator advances
+            # even when this `sub` was plain arithmetic rather than a case test.
+            off0_regs[reg] = value
+        elif mn == "cmp" and reg in off0_regs and imm is not None:
+            # `cmp` does not write the register, so the accumulator does not advance.
+            value = off0_regs[reg] + imm
+            if _is_dispatch_compare(ea) and value not in values:
+                values.append(value)
+        elif reg is not None and mn not in ("cmp", "test", "push"):
+            # Any other write to a tracked register breaks the chain.
+            off0_regs.pop(reg, None)
         ea = idc.next_head(ea)
 
     if not values:
@@ -1282,12 +1336,30 @@ def find_mail_result_consts(serverzone, clientzone):
             val_to_name[cval] = mname
 
     consts = {}
+    unmatched = []
     for v in values:
         name = val_to_name.get(v)
         if name:
             consts[name] = v
         else:
-            print(f"MAIL_*_RESULT: unmatched internal opcode {v} (0x{v:X})")
+            unmatched.append(v)
+
+    # Recovering nothing means the dispatch shape changed again -- say so loudly rather
+    # than emitting an empty dict that reads like "this build has no mail opcodes".
+    if not consts:
+        print(
+            f"WARNING MAIL_*_RESULT: recovered NOTHING from handler@{handler_ea:x}; "
+            f"candidates={[f'{v} (0x{v:X})' for v in values]}, "
+            f"expected={ {n: clientzone.content.get(n) for n in NAME_MAP} }"
+        )
+        return {}
+
+    missing = [m for m in NAME_MAP.values() if m not in consts]
+    if missing or unmatched:
+        print(
+            f"WARNING MAIL_*_RESULT partial: missing={missing}, "
+            f"unmatched={[f'{v} (0x{v:X})' for v in unmatched]}"
+        )
     print(f"MAIL_*_RESULT = {consts} (handler@{handler_ea:x})")
     return consts
 
