@@ -54,23 +54,23 @@
                 "opcode":983
             },
             {
-                "name":"Effect",
+                "name":"ActionEffect1",
                 "opcode":499
             },
             {
-                "name":"AoeEffect8",
+                "name":"ActionEffect8",
                 "opcode":276
             },
             {
-                "name":"AoeEffect16",
+                "name":"ActionEffect16",
                 "opcode":717
             },
             {
-                "name":"AoeEffect24",
+                "name":"ActionEffect24",
                 "opcode":237
             },
             {
-                "name":"AoeEffect32",
+                "name":"ActionEffect32",
                 "opcode":711
             },
             {

@@ -3,11 +3,11 @@ StatusEffectList2|{StatusEffectList2}
 StatusEffectList3|{StatusEffectList3}
 BossStatusEffectList|{BossStatusEffectList}
 StatusEffectListForay3|{StatusEffectListForay3}
-Ability1|{Effect}
-Ability8|{AoeEffect8}
-Ability16|{AoeEffect16}
-Ability24|{AoeEffect24}
-Ability32|{AoeEffect32}
+Ability1|{ActionEffect1}
+Ability8|{ActionEffect8}
+Ability16|{ActionEffect16}
+Ability24|{ActionEffect24}
+Ability32|{ActionEffect32}
 ActorCast|{ActorCast}
 EffectResult|{EffectResult}
 EffectResultBasic|{EffectResultBasic}

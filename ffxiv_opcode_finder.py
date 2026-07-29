@@ -1506,11 +1506,11 @@ lemegeton_opcodes=f"""		<Region Name="{Region_Name}" Version="{BuildID}.0000.000
 				<Opcode Name="StatusEffectList" Id="{serverzone.content["StatusEffectList"]}" />
 				<Opcode Name="StatusEffectList2" Id="{serverzone.content["StatusEffectList2"]}" />
 				<Opcode Name="StatusEffectList3" Id="{serverzone.content["StatusEffectList3"]}" />
-				<Opcode Name="Ability1" Id="{serverzone.content["Effect"]}" />
-				<Opcode Name="Ability8" Id="{serverzone.content["AoeEffect8"]}" />
-				<Opcode Name="Ability16" Id="{serverzone.content["AoeEffect16"]}" />
-				<Opcode Name="Ability24" Id="{serverzone.content["AoeEffect24"]}" />
-				<Opcode Name="Ability32" Id="{serverzone.content["AoeEffect32"]}" />
+				<Opcode Name="Ability1" Id="{serverzone.content["ActionEffect1"]}" />
+				<Opcode Name="Ability8" Id="{serverzone.content["ActionEffect8"]}" />
+				<Opcode Name="Ability16" Id="{serverzone.content["ActionEffect16"]}" />
+				<Opcode Name="Ability24" Id="{serverzone.content["ActionEffect24"]}" />
+				<Opcode Name="Ability32" Id="{serverzone.content["ActionEffect32"]}" />
 				<Opcode Name="ActorCast" Id="{serverzone.content["ActorCast"]}" />
 				<Opcode Name="EffectResult" Id="{serverzone.content["EffectResult"]}" />
 				<Opcode Name="ActorControl" Id="{serverzone.content["ActorControl"]}" />
