@@ -2,7 +2,6 @@
     "version":"2026.08.05",
     "region":"CN",
     "consts":{
-        "BASE_INVENTORY_ACTION":577,
         "MAIL_SEND_RESULT":185,
         "MAIL_DELETE_RESULT":638,
         "MAIL_TAKE_ATTACHMENTS_RESULT":671
@@ -804,7 +803,7 @@
                 "opcode":514
             },
             {
-                "name":"DyeItem",
+                "name":"DyeInformation",
                 "opcode":314
             },
             {
@@ -916,7 +915,7 @@
                 "opcode":577
             },
             {
-                "name":"ChatHandler",
+                "name":"SendChatMessage",
                 "opcode":973
             },
             {
@@ -924,7 +923,7 @@
                 "opcode":855
             },
             {
-                "name":"InventoryModifyHandler",
+                "name":"ItemOperation",
                 "opcode":576
             },
             {
@@ -936,7 +935,7 @@
                 "opcode":112
             },
             {
-                "name":"SetSearchInfoHandler",
+                "name":"EditSearchInfo",
                 "opcode":238
             },
             {
@@ -944,11 +943,11 @@
                 "opcode":418
             },
             {
-                "name":"UpdatePositionInstance",
+                "name":"UpdatePositionHandlerInstance",
                 "opcode":479
             },
             {
-                "name":"Heartbeat",
+                "name":"PingSync",
                 "opcode":165
             },
             {
@@ -956,11 +955,11 @@
                 "opcode":700
             },
             {
-                "name":"ClientCountdownInitiate",
+                "name":"StartCountdown",
                 "opcode":775
             },
             {
-                "name":"GlamourPlateSave",
+                "name":"SaveGlamourPlate",
                 "opcode":653
             },
             {
@@ -980,7 +979,7 @@
                 "opcode":140
             },
             {
-                "name":"RequestFCProfile",
+                "name":"RequestFreeCompanyShortInfo",
                 "opcode":637
             },
             {

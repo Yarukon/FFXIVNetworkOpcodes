@@ -215,7 +215,7 @@ namespace FFXIVOpcodes.CN
         InitiateReadyCheck = 0x0208,
         LinkshellInviteReply = 0x0192,
         StrategyBoardReceived = 0x0202,
-        DyeItem = 0x013A,
+        DyeInformation = 0x013A,
         InitRequest = 0x039F,
         PartyChangeLeader = 0x0347,
         QueueDuties = 0x0166,
@@ -243,23 +243,23 @@ namespace FFXIVOpcodes.CN
         RequestFreeCompanyShortMessage = 0x02C1,
         ActionRequest = 0x0216,
         ActionRequestGroundTargeted = 0x0241,
-        ChatHandler = 0x03CD,
+        SendChatMessage = 0x03CD,
         ClientTrigger = 0x0357,
-        InventoryModifyHandler = 0x0240,
+        ItemOperation = 0x0240,
         MarketBoardPurchaseHandler = 0x00B3,
         MarketBoardRequestItemListingInfo = 0x0070,
-        SetSearchInfoHandler = 0x00EE,
+        EditSearchInfo = 0x00EE,
         UpdatePositionHandler = 0x01A2,
-        UpdatePositionInstance = 0x01DF,
-        Heartbeat = 0x00A5,
+        UpdatePositionHandlerInstance = 0x01DF,
+        PingSync = 0x00A5,
         WorldTravel = 0x02BC,
-        ClientCountdownInitiate = 0x0307,
-        GlamourPlateSave = 0x028D,
+        StartCountdown = 0x0307,
+        SaveGlamourPlate = 0x028D,
         SubmitAdventurerPlate = 0x01DE,
         SubmitPortraitData = 0x035C,
         SendBardPerformanceBuffer = 0x018C,
         ExamineRequestComments = 0x008C,
-        RequestFCProfile = 0x027D,
+        RequestFreeCompanyShortInfo = 0x027D,
         MeldMateriaRequest = 0x02BB,
         RequestRecruitingPartyCount = 0x00D8,
         EventAction1 = 0x01B1,
@@ -292,7 +292,6 @@ namespace FFXIVOpcodes.CN
     
     public static class Consts
     {
-        public const int BASE_INVENTORY_ACTION = 577;
         public const int MAIL_SEND_RESULT = 185;
         public const int MAIL_DELETE_RESULT = 638;
         public const int MAIL_TAKE_ATTACHMENTS_RESULT = 671;
